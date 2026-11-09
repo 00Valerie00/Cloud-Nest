@@ -1,0 +1,22 @@
+<view class="page mailbox-page">
+  <view class="note">这里是 AI 根据宠物档案和你留下的回忆写成的想象回信，不代表真实沟通。</view>
+  <scroll-view class="timeline" scroll-y scroll-into-view="{{scrollTo}}" scroll-with-animation>
+    <view wx:if="{{!messages.length}}" class="empty"><text>这里很安静。</text><text>你可以从一段想念开始。</text></view>
+    <view class="message {{item.role === 'user' ? 'user-message' : 'pet-message'}}" wx:for="{{messages}}" wx:key="id" id="msg-{{index}}">
+      <view wx:if="{{item.role !== 'user' && pet.avatarDisplay}}" class="message-avatar-stage {{pet.avatarCutout ? 'cutout-stage' : ''}}"><image class="message-avatar {{pet.avatarCutout ? 'cutout-image' : ''}}" src="{{pet.avatarDisplay}}" mode="{{pet.avatarCutout ? 'aspectFit' : 'aspectFill'}}" /></view>
+      <view wx:elif="{{item.role !== 'user'}}" class="message-avatar avatar-fallback"><view class="ic ic-paw ic-warm"></view></view>
+      <view class="message-bubble"><text class="message-text">{{item.content}}</text><text class="timestamp">{{item.timeText}}{{item.role === 'user' ? '' : ' · 想象回信'}}</text></view>
+    </view>
+    <view class="message pet-message pending" wx:if="{{busy}}"><view wx:if="{{pet.avatarDisplay}}" class="message-avatar-stage {{pet.avatarCutout ? 'cutout-stage' : ''}}"><image class="message-avatar {{pet.avatarCutout ? 'cutout-image' : ''}}" src="{{pet.avatarDisplay}}" mode="{{pet.avatarCutout ? 'aspectFit' : 'aspectFill'}}" /></view><view wx:else class="message-avatar avatar-fallback"><view class="ic ic-paw ic-warm"></view></view><view class="message-bubble"><text class="message-text">我在慢慢想怎么回应你…</text></view></view>
+  </scroll-view>
+  <view class="composer">
+    <textarea class="compose-input" auto-height maxlength="1500" placeholder="想对它说点什么…" value="{{draft}}" bindinput="input" confirm-type="send" bindconfirm="send" />
+    <button class="send {{busy || !draft ? 'disabled' : ''}}" bindtap="send" style="width: 66rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx"><view class="ic ic-send ic-white send-ic"></view></button>
+  </view>
+  <view class="small muted safety-foot">悲伤没有对错，不必强迫自己快点好起来。</view>
+</view>
+<view class="tabbar">
+  <view class="tab-item" bindtap="goHome"><view class="ic ic-home"></view><text>首页</text></view>
+  <view class="tab-item active"><view class="ic ic-mail"></view><text>消息</text></view>
+  <view class="tab-item" bindtap="goMe"><view class="ic ic-user"></view><text>我的</text></view>
+</view>

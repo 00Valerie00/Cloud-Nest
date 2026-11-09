@@ -1,0 +1,19 @@
+<view class="page">
+  <view class="subtitle">选一种想放在桌面上的陪伴方式。</view>
+  <view class="style-label">样式 A：宠物照片 + 最新来信</view>
+  <view class="preview-a {{style === 'A' ? 'selected' : ''}}" bindtap="chooseStyle" data-style="A">
+    <image class="preview-a-bg" src="../../assets/widget-style-a.jpg" mode="aspectFill" />
+    <view class="quote-bubble">{{latest ? latest.content : '今天也请好好照顾自己。'}}</view>
+  </view>
+  <view class="preview-caption">云间小窝</view>
+  <view class="style-label">样式 B：星光爪印动画</view>
+  <view class="preview-b {{style === 'B' ? 'selected' : ''}}" bindtap="chooseStyle" data-style="B">
+    <view class="b-stars"></view>
+    <view class="paw"><view class="toe toe-a"></view><view class="toe toe-b"></view><view class="toe toe-c"></view><view class="toe toe-d"></view><view class="paw-pad"></view></view>
+    <text class="widget-slogan">云间有小窝，</text>
+    <text class="widget-slogan">思念有归处。</text>
+  </view>
+  <view class="preview-caption">云间小窝</view>
+  <view class="card widget-note"><text class="field-label">桌面展示</text><text class="small muted">样式和内容已保存在本机。安卓设备可按微信与系统支持方式添加小程序桌面入口；iPhone 以轻量快捷入口呈现。桌面组件的实际展示能力会随系统和微信版本变化。</text><button class="secondary tip-btn" bindtap="showDesktopTip">查看添加提示</button></view>
+  <view class="disclaimer">云窗内容仅用于思念陪伴。封存档案后，来信内容会停止更新。</view>
+</view>

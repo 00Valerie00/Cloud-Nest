@@ -1,0 +1,35 @@
+<view class="page home">
+  <view class="topline"><view class="brand-row"><text class="eyebrow">CLOUD NOOK</text><text wx:if="{{previewMode}}" class="preview-badge">开发预览</text></view><button class="profile-switch" bindtap="switchPet">{{activePet ? activePet.name : '选择档案'}} ⌄</button></view>
+  <view class="greet">
+    <text class="greet-lead">你好，这里是</text>
+    <view class="greet-title" wx:if="{{activePet}}"><text class="greet-name">{{activePet.nickname || activePet.name}}</text><text class="greet-tail">的云间小窝</text></view>
+    <text class="greet-title greet-title-empty" wx:else>你的云间小窝</text>
+  </view>
+  <view class="greet-sub">愿每一份思念，都被温柔以待。</view>
+  <view class="pet-card" wx:if="{{activePet}}" bindtap="openProfile">
+    <view wx:if="{{activePet.avatarDisplay}}" class="pet-photo-stage {{activePet.avatarCutout ? 'cutout-stage' : ''}}"><image class="pet-photo {{activePet.avatarCutout ? 'cutout-image' : ''}}" src="{{activePet.avatarDisplay}}" mode="{{activePet.avatarCutout ? 'aspectFit' : 'aspectFill'}}" /></view>
+    <view wx:else class="pet-photo placeholder"><view class="ic ic-paw ic-faint"></view></view>
+    <view class="pet-meta"><text class="pet-name">{{activePet.nickname || activePet.name}}</text><text class="small muted">{{activePet.species}} · {{activePet.archived ? '已安窝封存' : '在云窝留有一席'}}</text></view>
+    <view class="ic ic-chev ic-faint chevron"></view>
+  </view>
+  <view class="pet-card add-card" wx:else bindtap="addPet"><view class="add-icon"><view class="ic ic-plus ic-soft"></view></view><view class="pet-meta"><text class="pet-name">为想念留一间小窝</text><text class="small muted">创建第一份云窝档案</text></view></view>
+  <view class="grid">
+    <view class="g-card" bindtap="goProfile"><view class="ic ic-paw g-ic"></view><text class="g-title">云窝档案</text><text class="g-sub">记录爱宠的点滴</text></view>
+    <view class="g-card" bindtap="goMailbox"><view class="ic ic-mail g-ic warm-ic"></view><text class="g-title">悄悄话信箱</text><text class="g-sub">和它说说心里话</text></view>
+    <view class="g-card" wx:if="{{!quietMode}}" bindtap="goLetters"><view class="ic ic-letter g-ic"></view><text class="g-title">云间来信</text><text class="g-sub">来自它的每日消息</text></view>
+    <view class="g-card" wx:if="{{!quietMode && settings.starMap}}" bindtap="goStars"><view class="ic ic-star g-ic"></view><text class="g-title">同念星云</text><text class="g-sub">转动地球，遇见同一片想念</text></view>
+    <view class="g-card" wx:if="{{!quietMode && settings.community}}" bindtap="goCommunity"><view class="ic ic-chat g-ic"></view><text class="g-title">云伴小栈</text><text class="g-sub">匿名的温暖圈层</text></view>
+    <view class="grid-illust"><image src="../../assets/home-pets.png" mode="aspectFit" /></view>
+  </view>
+  <view class="me-row" bindtap="goMe">
+    <view class="ic ic-user me-ic"></view>
+    <view class="me-copy"><text class="me-title">我的</text><text class="small muted">管理档案 · 设置 · 更多</text></view>
+    <view class="ic ic-chev ic-faint"></view>
+  </view>
+  <view class="ethics" wx:if="{{quietMode}}">独处安静模式已开启：这里只保留云窝档案和悄悄话信箱。</view>
+</view>
+<view class="tabbar">
+  <view class="tab-item active"><view class="ic ic-home"></view><text>首页</text></view>
+  <view class="tab-item" bindtap="goMailbox"><view class="ic ic-mail"></view><text>消息</text></view>
+  <view class="tab-item" bindtap="goMe"><view class="ic ic-user"></view><text>我的</text></view>
+</view>

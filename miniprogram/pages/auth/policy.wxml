@@ -1,0 +1,7 @@
+<view class="page policy-page">
+  <view class="policy-card">
+    <text class="policy-title">{{title}}</text>
+    <text class="policy-body">{{body}}</text>
+  </view>
+  <text class="policy-footnote">你可以返回登录页继续，也可以先退出阅读。</text>
+</view>

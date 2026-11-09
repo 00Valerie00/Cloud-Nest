@@ -1,0 +1,14 @@
+backend/cloud_nest.sqlite3
+backend/cloud_nest.sqlite3-shm
+backend/cloud_nest.sqlite3-wal
+.DS_Store
+__pycache__/
+.env
+.env.*
+!.env.example
+project.private.config.json
+deployment/production.env
+backend/*.sqlite3
+backend/*.sqlite3-*
+测试头像.png
+测试图片.png

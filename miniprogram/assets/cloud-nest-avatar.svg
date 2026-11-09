@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="92" x2="900" y2="938" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FCF5EA"/>
+      <stop offset="1" stop-color="#F2E2CF"/>
+    </linearGradient>
+    <linearGradient id="cloud" x1="231" y1="340" x2="800" y2="796" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#E8F0EF"/>
+    </linearGradient>
+    <linearGradient id="catFur" x1="331" y1="352" x2="486" y2="673" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7A878"/>
+      <stop offset="1" stop-color="#C97F58"/>
+    </linearGradient>
+    <linearGradient id="dogFur" x1="540" y1="365" x2="711" y2="684" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8C69B"/>
+      <stop offset="1" stop-color="#BE8E67"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Warm, quiet background. -->
+  <rect width="1024" height="1024" rx="232" fill="url(#bg)"/>
+  <circle cx="512" cy="497" r="364" fill="#FFF9F0" fill-opacity=".58"/>
+  <circle cx="512" cy="497" r="318" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="3"/>
+
+  <!-- Soft cloud cushion behind the two pets. -->
+  <path d="M191 681C153 670 126 636 126 596C126 550 161 512 208 507C214 444 267 395 332 395C358 395 383 404 403 420C427 365 481 328 544 328C618 328 679 383 690 455C703 450 716 448 730 448C795 448 848 501 848 566C881 581 904 613 904 650C904 702 862 745 810 745H227C181 745 144 708 144 662C144 654 145 647 147 640C160 659 175 673 191 681Z" fill="url(#cloud)"/>
+
+  <!-- Cat: rounded ears and a warm cream face. -->
+  <path d="M319 468C321 418 333 376 349 341C354 330 369 329 377 338L415 384C427 380 440 378 454 379C466 379 477 381 488 385L527 339C535 329 550 332 554 344C568 380 578 423 577 471C576 545 518 596 448 596C378 596 316 545 319 468Z" fill="url(#catFur)"/>
+  <path d="M350 378L365 356L390 388C376 392 363 398 352 407L350 378Z" fill="#F3C2A6"/>
+  <path d="M483 388L509 357L521 383L518 411C507 401 495 393 483 388Z" fill="#F3C2A6"/>
+  <ellipse cx="448" cy="479" rx="101" ry="105" fill="#FFF3E4"/>
+  <path d="M395 472C404 483 416 483 426 472M470 472C480 483 492 483 501 472" stroke="#674C40" stroke-width="7" stroke-linecap="round"/>
+  <path d="M441 498C444 493 452 493 456 498C456 504 452 508 448 508C444 508 441 504 441 498Z" fill="#B97968"/>
+  <path d="M448 508C445 516 438 520 431 519M448 508C451 516 458 520 465 519" stroke="#8E6659" stroke-width="4.5" stroke-linecap="round"/>
+  <ellipse cx="389" cy="504" rx="12" ry="8" fill="#E9A995" fill-opacity=".55"/>
+  <ellipse cx="507" cy="504" rx="12" ry="8" fill="#E9A995" fill-opacity=".55"/>
+  <path d="M360 426C378 409 399 399 422 396" stroke="#F6D8BE" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+
+  <!-- Puppy: soft floppy ears, a round muzzle, and a tiny nose. -->
+  <path d="M579 416C560 391 541 399 534 430C523 476 538 518 568 525C585 529 598 512 599 485L579 416Z" fill="#B9825F"/>
+  <path d="M674 416C693 391 712 399 719 430C730 476 715 518 685 525C668 529 655 512 654 485L674 416Z" fill="#B9825F"/>
+  <path d="M566 464C566 411 602 377 647 377C692 377 728 411 728 464C728 524 694 572 647 572C600 572 566 524 566 464Z" fill="url(#dogFur)"/>
+  <path d="M605 466C613 476 624 476 633 466M661 466C670 476 681 476 689 466" stroke="#674C40" stroke-width="6.5" stroke-linecap="round"/>
+  <ellipse cx="647" cy="503" rx="45" ry="34" fill="#FFF2E2"/>
+  <path d="M636 493C641 486 653 486 658 493C658 501 653 506 647 506C641 506 636 501 636 493Z" fill="#765548"/>
+  <path d="M647 506C644 514 638 517 632 516M647 506C650 514 656 517 662 516" stroke="#8E6659" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="591" cy="499" rx="11" ry="8" fill="#E9A995" fill-opacity=".5"/>
+  <ellipse cx="703" cy="499" rx="11" ry="8" fill="#E9A995" fill-opacity=".5"/>
+  <path d="M590 425C602 405 619 393 639 389" stroke="#F8E5CC" stroke-width="8" stroke-linecap="round" opacity=".78"/>
+
+  <!-- Their little bodies tuck together under the cloud's soft edge. -->
+  <path d="M338 668C345 603 388 565 448 565C507 565 548 603 555 668C523 696 484 712 447 712C406 712 369 696 338 668Z" fill="#D88E64"/>
+  <path d="M537 671C542 611 584 578 647 578C710 578 751 617 757 672C724 700 685 714 647 714C605 714 567 699 537 671Z" fill="#D0A178"/>
+  <path d="M421 591C429 581 438 577 448 577C460 577 471 583 479 592" stroke="#F8DCC4" stroke-width="10" stroke-linecap="round" opacity=".88"/>
+  <path d="M616 602C625 592 636 588 647 588C659 588 670 593 678 602" stroke="#F7E5CE" stroke-width="10" stroke-linecap="round" opacity=".92"/>
+
+  <!-- A low cloud rim tucks them in like a blanket, without forming a face. -->
+  <path d="M150 718C195 689 248 687 293 710C342 735 376 747 421 739C464 731 481 704 520 703C559 702 584 731 624 739C675 750 717 734 763 710C808 687 860 690 903 719C880 761 837 787 787 787H237C197 787 165 759 150 718Z" fill="#F8F8F1"/>
+  <path d="M263 744C335 775 409 790 512 790C614 790 689 775 761 744" stroke="#DCE8E6" stroke-width="7" stroke-linecap="round" opacity=".78"/>
+
+  <!-- A few quiet stars, kept small so the pets remain the focus. -->
+  <path d="M265 315C269 327 273 331 285 335C273 339 269 343 265 355C261 343 257 339 245 335C257 331 261 327 265 315Z" fill="#D5B37D"/>
+  <circle cx="758" cy="342" r="7" fill="#D9B982"/>
+  <circle cx="804" cy="411" r="5" fill="#C7D8D7"/>
+</svg>

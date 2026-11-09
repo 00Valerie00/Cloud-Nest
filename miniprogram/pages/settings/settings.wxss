@@ -1,0 +1,14 @@
+.switch-card { padding: 6rpx 24rpx; }
+.switch-row { display: flex; min-height: 100rpx; align-items: center; justify-content: space-between; gap: 14rpx; }
+.set-ic { width: 34rpx; height: 34rpx; }
+.switch-row > view:not(.ic) { display: flex; flex: 1; flex-direction: column; gap: 7rpx; margin-left: 18rpx; }
+.setting-name { color: #5c6b72; font-size: 26rpx; }
+.setting-desc { color: #a2aba7; font-size: 20rpx; line-height: 1.5; }
+.quiet-row { padding: 7rpx 0; }
+switch { transform: scale(.8); transform-origin: right center; }
+.link-row { display: flex; align-items: center; justify-content: space-between; min-height: 92rpx; margin-top: 20rpx; padding: 0 28rpx; border: 1rpx solid rgba(236, 230, 220, .85); border-radius: 24rpx; background: #fffdf9; box-shadow: 0 8rpx 24rpx rgba(126, 114, 94, .05); }
+.link-name { color: #5c6b72; font-size: 26rpx; }
+.link-row .ic-chev { width: 26rpx; height: 26rpx; }
+.info-card { margin-top: 22rpx; background: #f1ece1; border: 0; }
+.info-title { display: block; color: #7c8582; font-size: 24rpx; }
+.info-body { display: block; margin-top: 11rpx; color: #98a19d; font-size: 21rpx; line-height: 1.8; }

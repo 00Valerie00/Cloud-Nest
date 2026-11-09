@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/launch/launch",
+    "pages/auth/auth",
+    "pages/auth/policy",
+    "pages/home/home",
+    "pages/profile/profile",
+    "pages/mailbox/mailbox",
+    "pages/letters/letters",
+    "pages/starmap/starmap",
+    "pages/community/community",
+    "pages/widget/widget",
+    "pages/me/me",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "navigationBarTitleText": "云间小窝",
+    "navigationBarBackgroundColor": "#f7f3ec",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f3ec",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

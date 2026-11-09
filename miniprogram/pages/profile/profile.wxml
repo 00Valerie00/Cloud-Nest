@@ -1,0 +1,61 @@
+<view class="page">
+  <view class="subtitle">记下它的样子与习惯</view>
+  <view class="profile-summary" wx:if="{{form.name}}">
+    <view class="profile-avatar-stage {{form.avatarIsCutout && form.avatarConfigured ? 'cutout-stage' : ''}}">
+      <image wx:if="{{form.avatarConfigured ? form.avatar : form.photos[0]}}" class="profile-avatar {{form.avatarIsCutout && form.avatarConfigured ? 'cutout-image' : ''}}" src="{{form.avatarConfigured ? form.avatar : form.photos[0]}}" mode="{{form.avatarIsCutout && form.avatarConfigured ? 'aspectFit' : 'aspectFill'}}" />
+      <image wx:else class="profile-avatar" src="../../assets/cloud-nest-avatar.png" mode="aspectFill" />
+    </view>
+    <view class="profile-identity"><view class="profile-name-row"><text class="profile-name">{{form.nickname || form.name}}</text><view class="ic ic-pencil ic-faint name-edit"></view></view><text class="small muted">{{form.species || '宠物'}} · {{form.sex || '性别未填写'}}</text><text class="small muted dates" wx:if="{{form.birthday || form.passingDate}}">{{form.birthday || '????-??-??'}} - {{form.passingDate || '今天'}}</text><view class="trait-row"><text wx:for="{{form.traits}}" wx:key="*this" class="pill">{{item}}</text></view></view>
+  </view>
+  <view class="card form-card">
+    <view class="field"><text class="field-label">宠物名字 *</text><input class="input" placeholder="它叫什么名字" value="{{form.name}}" data-key="name" bindinput="input" /></view>
+    <view class="field"><text class="field-label">昵称</text><input class="input" placeholder="你平时怎样叫它" value="{{form.nickname}}" data-key="nickname" bindinput="input" /></view>
+    <view class="field"><text class="field-label">物种 *</text><picker mode="selector" range="{{speciesOptions}}" value="{{speciesIndex}}" bindchange="speciesChange"><view class="select">{{form.species || '请选择物种'}} <text class="muted">⌄</text></view></picker></view>
+    <view class="field" wx:if="{{speciesIndex === speciesOptions.length - 1}}"><text class="field-label">自定义物种</text><input class="input" placeholder="请填写物种" value="{{form.customSpecies}}" data-key="customSpecies" bindinput="input" /></view>
+    <view class="field"><text class="field-label">性别</text><picker mode="selector" range="{{sexOptions}}" value="{{sexIndex}}" bindchange="sexChange"><view class="select">{{form.sex || '请选择性别'}} <text class="muted">⌄</text></view></picker></view>
+    <view class="row fields-row"><view class="field half"><text class="field-label">生日</text><picker mode="date" value="{{form.birthday}}" end="{{today}}" bindchange="dateChange" data-key="birthday"><view class="select">{{form.birthday || '选择日期'}}</view></picker></view><view class="field half"><text class="field-label">离世日期</text><picker mode="date" value="{{form.passingDate}}" end="{{today}}" bindchange="dateChange" data-key="passingDate"><view class="select">{{form.passingDate || '选择日期'}}</view></picker></view></view>
+    <view class="field avatar-field">
+      <view class="avatar-field-heading"><view><text class="field-label">宠物头像</text></view></view>
+      <view class="avatar-setting">
+        <view class="avatar-stage {{form.avatarIsCutout && form.avatarConfigured ? 'cutout-stage' : ''}}">
+          <image wx:if="{{form.avatarConfigured ? form.avatar : form.photos[0]}}" class="avatar-stage-image {{form.avatarIsCutout && form.avatarConfigured ? 'cutout-image' : ''}}" src="{{form.avatarConfigured ? form.avatar : form.photos[0]}}" mode="{{form.avatarIsCutout && form.avatarConfigured ? 'aspectFit' : 'aspectFill'}}" />
+          <image wx:else class="avatar-stage-image" src="../../assets/cloud-nest-avatar.png" mode="aspectFill" />
+        </view>
+        <view class="avatar-controls">
+          <view class="avatar-actions">
+            <button class="avatar-action primary-avatar-action" bindtap="chooseAvatar">{{form.avatar || (!form.avatarConfigured && form.photos[0]) ? '更换头像' : '上传头像'}}</button>
+            <button class="avatar-action" bindtap="openAvatarPhotoPicker">从已上传照片选</button>
+            <button wx:if="{{form.avatar || (!form.avatarConfigured && form.photos.length)}}" class="avatar-clear" bindtap="removeAvatar">恢复默认头像</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="field"><text class="field-label">性格标签 *</text><text class="small muted personality-hint">它或许是这样的宝贝</text><view class="personality-options"><view wx:for="{{personalityOptions}}" wx:key="*this" class="personality-option {{selectedTrait === item ? 'personality-selected' : ''}}" data-trait="{{item}}" bindtap="selectTrait">{{item}}</view></view></view>
+    <view class="memory-prompt-section">
+      <view class="section-heading"><view class="ic ic-home ic-soft sec-ic"></view><text>想留一点小线索吗？</text></view>
+      <view class="memory-prompt-card" wx:for="{{memoryPrompts}}" wx:key="key">
+        <text class="memory-prompt-title">{{item.title}}</text>
+        <input class="input memory-prompt-input" placeholder="{{item.placeholder}}" value="{{form.memoryNotes[index]}}" data-key="memoryNote" data-index="{{index}}" maxlength="120" bindinput="input" />
+      </view>
+    </view>
+    <view class="field"><text class="field-label">照片</text><view class="photos"><view class="photo-item" wx:for="{{form.photos}}" wx:key="*this"><image src="{{item}}" mode="aspectFill" /><text class="remove" data-index="{{index}}" catchtap="removePhoto">×</text></view><button class="photo-add" bindtap="choosePhotos">＋<text>添加一张</text></button></view></view>
+  </view>
+  <view class="card saved-memories-card" wx:if="{{petId}}">
+    <view class="memory-list-heading"><view><text class="section-heading">已保存的记忆</text></view></view>
+    <view class="memory-empty small muted" wx:if="{{!memoryLoading && !memories.length}}">这里暂时没有已同步的记忆。不需要为了填满它而补写内容。</view>
+    <view class="saved-memory-row" wx:for="{{memories}}" wx:key="id">
+      <view class="saved-memory-copy"><text class="saved-memory-source">{{item.sourceName}}</text><text class="saved-memory-content">{{item.content}}</text></view>
+      <text class="memory-delete" data-index="{{index}}" bindtap="deleteMemory">删除</text>
+    </view>
+  </view>
+  <button class="primary save" bindtap="save">{{isEditing ? '保存档案' : '创建云窝档案'}}</button>
+  <view class="bottom-space"></view>
+  <view wx:if="{{avatarPhotoPickerVisible}}" class="avatar-picker-mask" bindtap="closeAvatarPhotoPicker">
+    <view class="avatar-picker-dialog" catchtap="stopAvatarPickerTap">
+      <view class="avatar-picker-header"><text class="avatar-picker-title">从已上传照片中选择</text><text class="avatar-picker-close" bindtap="closeAvatarPhotoPicker">×</text></view>
+      <view class="avatar-picker-grid">
+        <view class="avatar-picker-item" wx:for="{{form.photos}}" wx:key="*this" data-index="{{index}}" bindtap="selectAvatarPhoto"><image src="{{item}}" mode="aspectFill" /></view>
+      </view>
+    </view>
+  </view>
+</view>

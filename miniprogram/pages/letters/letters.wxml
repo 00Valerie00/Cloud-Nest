@@ -1,0 +1,21 @@
+<view class="letter-page">
+  <image class="letter-bg" src="../../assets/launch-sky-dream.jpg" mode="aspectFill" />
+  <view class="letter-shade"></view>
+  <view class="letter-body-wrap">
+    <view class="letter-date">{{latest ? latest.day : '今天，给想念一点时间'}}</view>
+    <view class="letter" wx:if="{{latest}}">
+      <text class="letter-text">{{latest.content}}</text>
+      <text class="signature">—— 你的{{pet.nickname || pet.name}}</text>
+    </view>
+    <view class="letter empty-card" wx:else>今天的信还在路上。云间小窝会为你准备一段来自记忆的问候。</view>
+    <button class="again {{buttonDisabled ? 'again-disabled' : ''}}" disabled="{{buttonDisabled}}" bindtap="regenerate">{{buttonText}}</button>
+    <view class="daily-pill">
+      <view class="ic ic-paw ic-soft pill-ic"></view>
+      <text class="daily-text">每日来信已{{settings.dailyLetters ? '开启' : '关闭'}}</text>
+      <switch class="daily-switch" checked="{{settings.dailyLetters}}" color="#8fa9c2" bindchange="toggleDaily" />
+    </view>
+    <view class="section-head">以前的来信</view>
+    <view class="old-letter" wx:for="{{history}}" wx:key="id"><view class="row"><text class="old-day">{{item.day}}</text><text class="pill" wx:if="{{item.localSample}}">本地体验</text></view><view class="old-body">{{item.content}}</view></view>
+    <view class="bottom-space"></view>
+  </view>
+</view>

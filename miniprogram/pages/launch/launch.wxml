@@ -1,0 +1,11 @@
+<view class="launch">
+  <image class="launch-art" src="../../assets/launch-sky-dream.jpg" mode="aspectFill" />
+  <view class="launch-shade"></view>
+  <view class="launch-copy">
+    <text class="brand">云间小窝</text>
+    <view class="brand-swoosh"></view>
+    <text class="slogan">云间有小窝，思念有归处。</text>
+    <text class="description">在这里，你可以慢慢说想念。</text>
+  </view>
+  <button class="enter primary" bindtap="enter">进入小窝<text class="enter-chevron">›</text></button>
+</view>

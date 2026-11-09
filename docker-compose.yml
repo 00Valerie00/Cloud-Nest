@@ -1,0 +1,39 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - deployment/production.env
+    environment:
+      CLOUD_NEST_HOST: 0.0.0.0
+      PORT: "8787"
+      CLOUD_NEST_DB: /data/cloud_nest.sqlite3
+      CLOUD_NEST_DEV_AUTH: "0"
+      CLOUD_NEST_TRUST_PROXY: "1"
+    volumes:
+      - cloud_nest_data:/data
+    expose:
+      - "8787"
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2
+    env_file:
+      - deployment/production.env
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./deployment/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  cloud_nest_data:
+  caddy_data:
+  caddy_config:

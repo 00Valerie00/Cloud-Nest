@@ -1,0 +1,20 @@
+.letter-page { position: relative; min-height: 100vh; overflow: hidden; background: #a8bfd6; }
+.letter-bg, .letter-shade { position: fixed; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; }
+.letter-shade { background: linear-gradient(180deg, rgba(58, 82, 108, .16) 0%, rgba(96, 104, 110, 0) 34%, rgba(244, 239, 230, .5) 100%); }
+.letter-body-wrap { position: relative; z-index: 1; padding: 30rpx 30rpx 80rpx; }
+.letter-date { margin: 8rpx 2rpx 24rpx; color: #fdfbf5; font-size: 29rpx; letter-spacing: 2rpx; text-align: center; text-shadow: 0 2rpx 14rpx rgba(66, 86, 106, .35); }
+.letter { position: relative; padding: 34rpx 32rpx; border-radius: 30rpx; background: rgba(255, 253, 249, .96); box-shadow: 0 14rpx 40rpx rgba(84, 96, 108, .18); }
+.letter-text { display: block; color: #5a686e; font-size: 28rpx; line-height: 2; white-space: pre-wrap; }
+.signature { display: block; margin-top: 24rpx; color: #99a19d; font-size: 24rpx; text-align: right; }
+.empty-card { color: #9ea6a3; text-align: center; line-height: 1.9; }
+.again { display: flex; width: 320rpx; min-height: 84rpx; align-items: center; justify-content: center; margin: 34rpx auto 0; border-radius: 99rpx; background: rgba(255, 253, 249, .94); color: #6d8296; font-size: 28rpx; letter-spacing: 2rpx; box-shadow: 0 12rpx 30rpx rgba(84, 96, 108, .2); }
+.again-disabled { opacity: .62; }
+.daily-pill { display: flex; align-items: center; justify-content: space-between; margin: 40rpx auto 0; padding: 16rpx 20rpx 16rpx 28rpx; width: 620rpx; border-radius: 99rpx; background: rgba(255, 253, 249, .9); box-shadow: 0 10rpx 26rpx rgba(84, 96, 108, .12); }
+.pill-ic { width: 34rpx; height: 34rpx; }
+.daily-text { flex: 1; margin-left: 16rpx; color: #6b7c84; font-size: 25rpx; }
+.daily-switch { transform: scale(.82); transform-origin: right center; }
+.disclaimer { margin: 30rpx 8rpx 0; color: #8f9aa0; font-size: 20rpx; line-height: 1.65; text-align: center; }
+.section-head { margin: 40rpx 4rpx 4rpx; color: #718185; font-size: 26rpx; }
+.old-letter { margin-top: 16rpx; padding: 22rpx 26rpx; border-radius: 26rpx; background: rgba(255, 253, 249, .92); box-shadow: 0 8rpx 24rpx rgba(126, 114, 94, .05); color: #718083; font-size: 22rpx; }
+.old-day { color: #9aa4a1; }
+.old-body { margin-top: 12rpx; color: #68777a; font-size: 25rpx; line-height: 1.75; white-space: pre-wrap; }

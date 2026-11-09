@@ -1,0 +1,97 @@
+<view class="page star-page">
+  <view class="nebula-head">
+    <text class="nebula-eyebrow">CLOUD NEST · SHARED SKY</text>
+    <text class="star-alone">在同一颗星球上，轻轻想念。</text>
+    <text class="star-desc">转动地球，看看哪些地方也有主人把思念安放在这里。</text>
+  </view>
+
+  <view class="globe-stage">
+    <view class="globe-aura"></view>
+    <view class="orbit orbit-outer"></view>
+    <view class="orbit orbit-inner"></view>
+    <canvas
+      id="earthGlobe"
+      type="webgl"
+      class="earth-canvas"
+      bindtouchstart="globeTouchStart"
+      catchtouchmove="globeTouchMove"
+      bindtouchend="globeTouchEnd"
+      bindtouchcancel="globeTouchEnd"
+    ></canvas>
+    <view class="globe-zoom-tools">
+      <button class="globe-zoom-button" data-direction="out" bindtap="zoomGlobe">−</button>
+      <button class="globe-zoom-button" data-direction="in" bindtap="zoomGlobe">＋</button>
+    </view>
+    <view class="globe-caption">拖动旋转 · 双指缩放 · 点击亮点查看地区人数</view>
+    <view class="globe-error" wx:if="{{globeUnavailable}}">当前设备暂不支持地球渲染</view>
+  </view>
+
+  <view class="globe-tools">
+    <button class="globe-tool" bindtap="toggleRotation">{{autoRotating ? '暂停旋转' : '继续旋转'}}</button>
+    <button class="globe-tool" bindtap="resetGlobe">回到亚洲视角</button>
+  </view>
+
+  <view class="nebula-count-row">
+    <view class="nebula-count"><text class="count-number">{{participantCount}}</text><text class="count-label">位主人自愿加入</text></view>
+    <text class="count-note" wx:if="{{connected}}">一个人加入，所在地区就会亮起匿名星点</text>
+    <text class="count-note" wx:elif="{{localPreview}}">本地演示 · 只保存在当前设备</text>
+    <text class="count-note" wx:else>{{serviceMessage || (apiConfigured ? '正在连接星云服务…' : '线上星云服务尚未配置')}}</text>
+  </view>
+
+  <view class="selected-city" wx:if="{{selectedNebula}}">
+    <view class="selected-orb"></view>
+    <view class="selected-copy"><text class="selected-title">{{selectedNebula.name}}</text><text class="selected-desc">{{selectedNebula.count}} 位主人在这个位置附近留下了星光</text></view>
+    <button class="selected-close" bindtap="resetGlobe">×</button>
+  </view>
+  <view class="selected-city empty-city" wx:elif="{{connected && participantCount > 0 && markers.length === 0}}">
+    <view class="selected-orb"></view><view class="selected-copy"><text class="selected-title">星光正在汇聚</text><text class="selected-desc">目前还没有达到展示人数的地区星簇</text></view>
+  </view>
+
+  <view class="join-card">
+    <view class="join-heading"><text class="join-title">把你所在的位置放进星云</text><text class="join-status" wx:if="{{ownLocationName}}">已分享：{{ownLocationName}}</text></view>
+    <text class="join-copy" wx:if="{{localPreview}}">选择位置可在本机预览亮点效果；演示数据只保存在当前设备，不会上传。</text>
+    <text class="join-copy" wx:else>可搜索或从列表选择省级地区、国家或大洋。不会读取 GPS，也不会展示昵称或账号。</text>
+    <view class="location-control">
+      <view class="location-input-row">
+        <input class="location-search" value="{{locationQuery}}" placeholder="{{selectedLocationName || '搜索或选择省份、国家、大洋'}}" placeholder-class="star-ph" bindinput="locationSearchInput" />
+        <view class="location-arrow" bindtap="toggleLocationOptions">{{showLocationOptions ? '⌃' : '⌄'}}</view>
+      </view>
+      <scroll-view class="location-results" scroll-y wx:if="{{showLocationOptions && locationMatches.length}}">
+        <view class="location-result" wx:for="{{locationMatches}}" wx:key="code" data-code="{{item.code}}" bindtap="chooseLocation"><text>{{item.name}}</text><text class="location-group">{{item.group}}</text></view>
+      </scroll-view>
+    </view>
+    <checkbox-group bindchange="consentChange">
+      <label class="consent-row">
+        <checkbox value="share-city" checked="{{consentChecked}}" color="#9cc9db" />
+        <text>我同意在其他游客可见的星云图中分享我选择的位置。该地区有参与者就会显示匿名星点，不展示账号或昵称；我可以随时撤回并删除记录。</text>
+      </label>
+    </checkbox-group>
+    <button class="join-button {{!consentChecked ? 'join-disabled' : ''}}" bindtap="joinNebula">{{ownLocationName ? '确认并更新位置' : '同意并加入星云'}}</button>
+    <button class="withdraw-button" wx:if="{{ownLocationCode}}" bindtap="withdrawNebula">撤回分享并删除位置记录</button>
+    <text class="storage-note" wx:if="{{localPreview}}">本地演示加入不会创建真实注册记录。正式分享需要线上星云服务已部署并配置。</text>
+  </view>
+
+  <view class="memory-section">
+    <view class="section-heading"><text class="section-title">留下一句想念</text><text class="section-sub">不必署名，短短一句也会发光</text></view>
+    <view class="add-memory">
+      <textarea class="star-input phrase-input" maxlength="60" placeholder="写一句想念（选填，最多 60 字）" placeholder-class="star-ph" value="{{phrase}}" bindinput="input" auto-height="true"></textarea>
+      <input class="star-input" maxlength="20" placeholder="你的位置（选填，只用于这句星语）" placeholder-class="star-ph" value="{{city}}" bindinput="cityInput" />
+      <button class="leave-star" bindtap="leaveStar">留下思念</button>
+      <text class="memory-privacy">星语和你填写的位置会匿名展示给其他游客。</text>
+    </view>
+    <view class="memory-list" wx:if="{{stars.length}}">
+      <view class="memory-item" wx:for="{{stars}}" wx:key="id" data-index="{{index}}" bindtap="showStar">
+        <view class="memory-star"></view>
+        <view class="memory-copy"><text class="memory-from">{{item.city ? '来自' + item.city : '来自远方'}}</text><text class="memory-phrase">{{item.phrase}}</text></view>
+        <text class="memory-arrow">›</text>
+      </view>
+    </view>
+    <view class="memory-empty" wx:else>还没有星语，愿意的话，留一句给这片星空。</view>
+  </view>
+</view>
+
+<view class="tabbar">
+  <view class="tab-item" bindtap="goHome"><view class="ic ic-home"></view><text>首页</text></view>
+  <view class="tab-item" bindtap="goMailbox"><view class="ic ic-mail"></view><text>消息</text></view>
+  <view class="tab-item active" bindtap="goMe"><view class="ic ic-user"></view><text>我的</text></view>
+</view>

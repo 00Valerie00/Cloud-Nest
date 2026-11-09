@@ -1,0 +1,18 @@
+<view class="page">
+  <view class="subtitle">每一项都可以按你的需要调整。</view>
+  <view class="card switch-card">
+    <view class="switch-row"><view class="ic ic-mail set-ic"></view><view><text class="setting-name">云间来信</text><text class="setting-desc">每天一段来自记忆的问候</text></view><switch checked="{{settings.dailyLetters}}" color="#8fa9c2" bindchange="toggle" data-key="dailyLetters" /></view>
+    <view class="divider"></view>
+    <view class="switch-row"><view class="ic ic-paw set-ic"></view><view><text class="setting-name">同念星云</text><text class="setting-desc">自愿分享城市，匿名查看星语</text></view><switch checked="{{settings.starMap}}" color="#8fa9c2" disabled="{{settings.quietMode}}" bindchange="toggle" data-key="starMap" /></view>
+    <view class="divider"></view>
+    <view class="switch-row"><view class="ic ic-people set-ic"></view><view><text class="setting-name">云伴小栈圈子</text><text class="setting-desc">按离世时间分组的匿名留言</text></view><switch checked="{{settings.community}}" color="#8fa9c2" disabled="{{settings.quietMode}}" bindchange="toggle" data-key="community" /></view>
+    <view class="divider"></view>
+    <view class="switch-row"><view class="ic ic-check set-ic"></view><view><text class="setting-name">自动提取对话记忆</text><text class="setting-desc">只尝试保存你明确说出的宠物事实；可以随时关闭</text></view><switch checked="{{settings.autoExtractMemories}}" color="#8fa9c2" bindchange="toggle" data-key="autoExtractMemories" /></view>
+    <view class="divider"></view>
+    <view class="switch-row quiet-row"><view class="ic ic-moon set-ic"></view><view><text class="setting-name">独处安静模式</text><text class="setting-desc">关闭所有社交模块，只保留档案与信箱</text></view><switch checked="{{settings.quietMode}}" color="#8fa9c2" bindchange="toggleQuiet" /></view>
+    <view class="divider"></view>
+    <view class="switch-row"><view class="ic ic-bell set-ic"></view><view><text class="setting-name">消息推送</text><text class="setting-desc">允许云间来信提醒（需配置订阅消息）</text></view><switch checked="{{settings.pushEnabled}}" color="#8fa9c2" bindchange="toggle" data-key="pushEnabled" /></view>
+  </view>
+  <view class="link-row" bindtap="privacy"><text class="link-name">阅读隐私说明</text><view class="ic ic-chev ic-faint"></view></view>
+  <view class="card info-card"><text class="info-title">关于云间小窝</text><text class="info-body">本产品是思念记录与 AI 陪伴，不是宠物复活，也无法真正与宠物沟通。悲伤没有对错，不必强迫自己快点好起来。</text></view>
+</view>

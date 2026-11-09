@@ -1,0 +1,26 @@
+<view class="page community-page">
+  <view class="subtitle">按离别时间相遇。这里只有匿名文字留言，没有私聊、@、点赞或回复。</view>
+  <view class="filter-row">
+    <text class="filter-pill {{joined === item ? 'active' : ''}}" wx:for="{{groups}}" wx:key="*this" data-group="{{item}}" bindtap="selectGroup">{{item}}</text>
+  </view>
+  <view class="row quit-row" wx:if="{{joined}}"><text class="quit" bindtap="leaveGroup">退出小栈</text></view>
+  <view wx:if="{{joined}}" class="joined-content">
+    <button class="composer-launch" bindtap="openComposer">写一段留言</button>
+    <scroll-view class="posts-timeline" scroll-y scroll-into-view="{{scrollTarget}}" scroll-with-animation>
+      <view wx:if="{{!posts.length}}" class="card empty">小栈暂时很安静。你可以只看看，也可以留下一句话。</view>
+      <view class="post" wx:for="{{posts}}" wx:key="id" id="post-{{item.id}}">
+        <view class="post-avatar"><image src="../../assets/cloud-nest-avatar.png" mode="aspectFill" /></view>
+        <view class="post-copy"><text class="post-text">{{item.content}}</text><text class="post-time">{{item.timeText}} · 匿名</text></view>
+      </view>
+    </scroll-view>
+  </view>
+  <view wx:else class="card empty">选择一个时间圈子，遇见与你相近的想念；也可以先只是看看。</view>
+  <view class="privacy">留言会以匿名方式展示。请不要留下联系方式或他人隐私；如暂时不想与人相遇，可以随时退出小栈。</view>
+  <view class="composer-mask" wx:if="{{showComposer}}" catchtap="closeComposer">
+    <view class="composer-sheet" catchtap="stopTap">
+      <view class="composer-heading"><text>留下一段想念</text><text class="composer-close" bindtap="closeComposer">×</text></view>
+      <textarea class="textarea composer-input" maxlength="300" placeholder="写一段温和、尊重彼此的留言" value="{{draft}}" bindinput="input" auto-focus="{{showComposer}}" />
+      <button class="publish" bindtap="publish">发布留言</button>
+    </view>
+  </view>
+</view>

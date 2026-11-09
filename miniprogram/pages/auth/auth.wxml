@@ -1,0 +1,31 @@
+<view class="auth-page">
+  <view class="auth-glow glow-one"></view>
+  <view class="auth-glow glow-two"></view>
+
+  <view class="auth-brand">
+    <view class="nest-mark"><text>云</text><view class="nest-mark-dot"></view></view>
+    <text class="auth-kicker">CLOUD NOOK</text>
+    <text class="auth-title">给想念一个温柔的归处</text>
+    <text class="auth-subtitle">慢慢说，轻轻记，在云间留一盏灯。</text>
+  </view>
+
+  <view class="auth-panel">
+    <view class="auth-illustration"><image src="../../assets/home-pets.png" mode="aspectFit" /></view>
+    <text class="panel-title">从一间小窝开始</text>
+    <text class="panel-copy">无需微信或手机号。游客体验可记录一只宠物，并使用云窝档案、悄悄话信箱、云间来信、同念星云和云伴小栈。</text>
+    <text class="upgrade-note" wx:if="{{legacyGuest}}">为继续使用 AI 和云端交流，请同意新版说明并重新连接游客小窝。</text>
+
+    <view class="agreement-row">
+      <checkbox-group bindchange="agreementChange"><label class="agreement-check"><checkbox value="agree" color="#91a99e" /></label></checkbox-group>
+      <view class="agreement-copy"><text>我已阅读并同意</text><text class="agreement-link" data-type="terms" catchtap="openPolicy">《服务说明》</text><text>和</text><text class="agreement-link" data-type="privacy" catchtap="openPolicy">《隐私说明》</text></view>
+    </view>
+
+    <button class="guest-button" loading="{{loading}}" disabled="{{loading}}" bindtap="continueAsGuest">{{loading ? '正在为你打开小窝…' : '以游客身份进入'}}</button>
+    <text class="guest-hint">档案保存在本机；AI 与公开交流功能会在使用时连接服务。</text>
+
+    <text class="auth-error" wx:if="{{errorText}}">{{errorText}}</text>
+
+  </view>
+
+  <text class="auth-disclaimer">AI 生成内容是温柔的文字陪伴，不代表宠物真实回应。</text>
+</view>
